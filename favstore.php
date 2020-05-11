@@ -1,3 +1,4 @@
+
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,8 +70,9 @@
 		</div>
 		<div class="header_social d-flex flex-row align-items-center justify-content-start">
 			<ul class="d-flex flex-row align-items-start justify-content-start">
-				<li><a href="#">Favourite store</a></li>
-				<li><a href="#">Shopping cart</a></li>
+				<li><a href="favstore.php">Favourite store</a></li>
+				<li><a href="history.php">History</a></li>
+				<li><a href="shoppingcart.php">Shopping cart</a></li>
 			</ul>
 		</div>
 	</header>
@@ -96,7 +98,7 @@
 								<div class="col">
 									<div class="home_slider_content">
 
-										<div class="home_title"><h2>Page store</h2></div>
+										<div class="home_title"><h2>Favourites</h2></div>
 									</div>
 								</div>
 							</div>

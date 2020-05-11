@@ -13,6 +13,24 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,700,900|Display+Playfair:200,300,400,700">
+<link rel="stylesheet" href="fonts/icomoon/style.css">
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="css/jquery-ui.css">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+
+<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+
+
+<link rel="stylesheet" href="css/aos.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -50,12 +68,9 @@
 		</div>
 		<div class="header_social d-flex flex-row align-items-center justify-content-start">
 			<ul class="d-flex flex-row align-items-start justify-content-start">
-				<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+				<li><a href="favstore.php">Favourite store</a></li>
+				<li><a href="history.php">History</a></li>
+				<li><a href="shoppingcart.php">Shopping cart</a></li>
 			</ul>
 		</div>
 	</header>
@@ -85,7 +100,7 @@
 										<div class="home_title"><h2>Online shopping</h2></div>
 										<div>
 
-													<form action="search.php">
+													<form action="search.php" method="post">
 														<input type="text" placeholder="Search.." name="search">
 														<select name="searc">
 																	<option value="0">Store</option>
@@ -376,14 +391,12 @@
 	</div>  -->
 
 
-	<!-- News
 
 
 
 
 
 
-	<!-- Footer -->
 
 
 

@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +49,7 @@
 							<nav class="main_nav">
 								<ul class="d-flex flex-row align-items-start justify-content-start">
 									<li><a href="index.php">Home</a></li>
-                  <li class="active"><a href="pagestore.php">Page store</a></li>
+                  <li><a href="pagestore.php">Page store</a></li>
 									<li><a href="login.php">Login</a></li>
 
 
@@ -68,9 +69,9 @@
 		</div>
 		<div class="header_social d-flex flex-row align-items-center justify-content-start">
 			<ul class="d-flex flex-row align-items-start justify-content-start">
-				<li><a href="favstore.php">Favourite store</a></li>
-				<li><a href="history.php">History</a></li>
-				<li><a href="shoppingcart.php">Shopping cart</a></li>
+        <li><a href="favstore.php">Favourite store</a></li>
+        <li><a href="history.php">History</a></li>
+        <li><a href="shoppingcart.php">Shopping cart</a></li>
 			</ul>
 		</div>
 	</header>
@@ -95,21 +96,7 @@
 							<div class="row">
 								<div class="col">
 									<div class="home_slider_content">
-
-										<div class="home_title"><h2>Search</h2></div>
-										<div>
-
-													<form action="search.php" method="post">
-														<input type="text" placeholder="Search.." name="search">
-														<select name="searc">
-																	<option value="0">Store</option>
-																	<option value="1">Products</option>
-														</select>
-														<button type="submit"><i class="fa fa-search"></i></button>
-
-													</form>
-
-										</div>
+										<div class="home_title"><h2>Show store</h2></div>
 									</div>
 								</div>
 							</div>
@@ -191,59 +178,48 @@
 
 	<!-- Search -->
 
-	<!-- Destinations -->
 
-
-
-
-				<div class="col text-center">
-
-					<div class="section_title"><h1>Store</h1></div>
-				</div>
-
-
-
-
-
-  <div class="destinations" id="destinations" >
+  <div class="destinations" id="destinations">
 		<div class="container">
 			<div class="row">
 				<div class="col text-center">
-          <form action="showstore.php" method="POST"/>
-					<?php
-					$search=$_POST['search'];
-					$searc=$_POST['searc'];
-					require('dbconn.php');
-					if($searc==0){
-						$query= "SELECT * FROM shop where name='$search'";
-						$result= mysqli_query($db, $query) or die ("Couldnt execute query.");
-						while($row=MySQLI_fetch_array($result)){
-							echo "
-							<div class='container-login100-form-btn m-t-20'>
-							<button type='submit' name='submit'  class='login100-form-btn'value='$row[id]'>Store name:$row[name] | Store address:$row[address] | Store phone:$row[phone]</button>
-							</div> <hr>";
-					}
-					}else {
-					$query= "SELECT * FROM product WHERE name='$search'";
-					$result= mysqli_query($db, $query) or die ("Couldnt execute query.");
-					while($row=MySQLI_fetch_array($result)){
-						echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['picture'] ).'"/>';
-						echo " <div class='destination item'>
-									 <div class='destination_image'>
-									 </div>
-									 <div class='destination_content' style:'align:center;'>
-									 <div class='destination_title'><a href='events.html' id='rockclimbing'>$row[name]</a></div>
-									 <div class='destination_subtitle'><form action='addproduct.php' method='post'><button type='submit' name='submit' value='$row[id]'>Add to shopping cart </button><input type='number'name='quantity' value='1'></form></div>
-									 </div>
-									 </div><hr><hr><hr>";
-					}
 
-					}
-					?>
-</form>
+
+<!-- echo "<div class='section_title'><h1>$row2[name]<br>($avg Stars)</h1></div>"; -->
+  <?php
+require('dbconn.php');
+$query= "SELECT name, id, picture, price, quantiy from product, shoppingcart where customer_id='$_SESSION[userid]' and product.id = shoppingcart.product_ID";
+$result= mysqli_query($db, $query) or die ("Couldnt execute query 0.");
+$summ = 0;
+while($row=MySQLI_fetch_array($result)){
+$r = $row['price']*$row['quantiy'];
+echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['picture'] ).'"/>';
+echo " <div class='destination item'>
+							<div class='destination_image'>
+
+							</div>
+							<div class='destination_content'>
+								<div class='destination_title'><a href='events.html' id='rockclimbing'>$row[name]</a></div>
+
+$r $,
+
+                quantity: $row[quantiy]
+
+							</div>
+						</div><hr><hr><hr>";
+
+            $summ= $summ + ($row['price']*$row['quantiy']);
+}
+echo "
+<form action='order.php' method='post'>
+<button name='checkout' type='submit'>proceed to checkout</button>
+<h3>total: $summ $</h3>
+</form> ";
+
+  ?>
 </div>
 </div>
-</div>
+
 </div>
 </div>
 

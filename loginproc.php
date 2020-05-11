@@ -33,7 +33,7 @@ else{
 
 
 							//echo"You are a validated user, logged in successfully.";
-	            require("index.php");
+	            // require("index.php");
 
   }
 

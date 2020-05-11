@@ -70,7 +70,8 @@
 		<div class="header_social d-flex flex-row align-items-center justify-content-start">
 			<ul class="d-flex flex-row align-items-start justify-content-start">
 				<li><a href="favstore.php">Favourite store</a></li>
-				<li><a href="#">Shopping cart</a></li>
+				<li><a href="history.php">History</a></li>
+				<li><a href="shoppingcart.php">Shopping cart</a></li>
 			</ul>
 		</div>
 	</header>
@@ -193,21 +194,33 @@
 					if(isset($_POST['like'])){
 							if($_POST['like']=="like"){
 								$query11= "INSERT INTO likes(customer_id,store_id) VALUES ('$_SESSION[userid]','$id2')";
-									$result11= mysqli_query($db, $query11) or die ("Couldnt execute query.");
+									$result11= mysqli_query($db, $query11) or die ("Couldnt execute query 11.");
 							}
 							else{
 								$query12 ="DELETE FROM likes WHERE customer_id='$_SESSION[userid]' and store_id='$id2'";
-								$result12= mysqli_query($db, $query12) or die ("Couldnt execute query.");
+								$result12= mysqli_query($db, $query12) or die ("Couldnt execute query 12.");
 							}
 					}
           $query2= "SELECT * FROM shop WHERE id='$id2'";
-          $result2= mysqli_query($db, $query2) or die ("Couldnt execute query.");
+          $result2= mysqli_query($db, $query2) or die ("Couldnt execute query 2");
           $row2=MySQLI_fetch_array($result2);
 
-					echo "<div class='section_title'><h1>$row2[name]</h1></div>";
+					$query13 = "SELECT rate FROM rating WHERE storeid='$id2'";
+					$result13 = mysqli_query($db, $query13) or die ("Couldnt execute query 13");
+					$total = 0;
+					$num = 0;
+					while($row=MySQLI_fetch_array($result13)){
+						$total = $row['rate'];
+						$num++;
+					}
+					$avg=0;
+					if($num>0)
+						$avg = $total/$num;
+
+					echo "<div class='section_title'><h1>$row2[name]<br>($avg Stars)</h1></div>";
 
 					$query10="SELECT * FROM likes WHERE customer_id='$_SESSION[userid]' and store_id='$id2'";
-					$result10= mysqli_query($db, $query10) or die ("Couldnt execute query.");
+					$result10= mysqli_query($db, $query10) or die ("Couldnt execute query 10.");
 					$row10 = mysqli_fetch_assoc($result10);
 					if($row10){
 						echo "<form action='showstore.php' method='post'><input type='text' name='submit' value='$id2' style='visibility: hidden;'><button type='submit' name='like' value='unlike'>Remove from favourite</button></form>";
@@ -236,14 +249,14 @@
 
 if(isset($_POST['select'])){
 		$query111 = "SELECT * from rating where customer_id='$_SESSION[userid]' and storeid='$_POST[submit]'";
-		  $result111= mysqli_query($db, $query111) or die ("Couldnt execute query");
+		  $result111= mysqli_query($db, $query111) or die ("Couldnt execute query 111");
 			$row111=MySQLI_fetch_array($result111);
 			if($row111){
-				$query1111 = "UPDATE rating set rating = $_POST[select] where customer_id='$_SESSION[userid]' and storeid='$_POST[submit]' ";
-				  $result1111= mysqli_query($db, $query1111) or die ("Couldnt execute query.");
+				$query1111 = "UPDATE rating set rate = $_POST[select] where customer_id='$_SESSION[userid]' and storeid='$_POST[submit]' ";
+				$result1111= mysqli_query($db, $query1111) or die ("Couldnt execute query 1111.");
 			}else{
 				$query11111 = "INSERT INTO rating (customer_id, storeid, rate) VALUES ('$_SESSION[userid]', '$id2','$_POST[select]')";
-				  $result11111= mysqli_query($db, $query11111) or die ("Couldnt execute query....");
+				  $result11111= mysqli_query($db, $query11111) or die ("Couldnt execute query 11111....");
 			}
 	}
  ?>
@@ -262,7 +275,7 @@ if(isset($_POST['select'])){
 require('dbconn.php');
 $id=$_POST["submit"];
 $query= "SELECT * FROM product WHERE store_id='$id'";
-$result= mysqli_query($db, $query) or die ("Couldnt execute query.");
+$result= mysqli_query($db, $query) or die ("Couldnt execute query 0.");
 
 
 
@@ -270,10 +283,11 @@ while($row=MySQLI_fetch_array($result)){
 echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['picture'] ).'"/>';
 echo " <div class='destination item'>
 							<div class='destination_image'>
-
 							</div>
 							<div class='destination_content'>
 								<div class='destination_title'><a href='events.html' id='rockclimbing'>$row[name]</a></div>
+								$row[price] $,
+
 								<div class='destination_subtitle'><form action='addproduct.php' method='post'><button type='submit' name='submit' value='$row[id]'>Add to shopping cart </button><input type='number'name='quantity' value='1'></form></div>
 							</div>
 						</div><hr><hr><hr>";
