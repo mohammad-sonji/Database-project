@@ -9,7 +9,6 @@
 <p><br></p>
 <input type="text" name="productdescription"placeholder="enter product desciption" required/>
 <p><br></p>
-
   <input type="submit" id="submit" name="submit" value="create store">
 
 
@@ -25,6 +24,8 @@
     $price = $_POST["productprice"];
     $cost = $_POST["productcost"];
     $description = $_POST["productdescription"];
+    // $_imagePost = file_get_contents($_FILES['_imagePost']['tmp_name']);
+
     $query = "INSERT into product (store_id, name, price, cost, description) values ('$sid' , '$name', '$price', '$cost', '$description')";
     $result = mysqli_query($db, $query) or die ("Couldnt execute query.");
     header("Location: showstoreowner.php?submit=$sid");

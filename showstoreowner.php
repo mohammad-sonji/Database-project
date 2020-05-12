@@ -18,7 +18,9 @@ echo " <div class='destination item'>
               <div class='destination_title'><a href='events.html' id='rockclimbing'>$row[name]</a></div>
               $row[price] $,
 
-              <div class='destination_subtitle'><form action='addproduct.php' method='post'><button type='submit' name='submit' value='$row[id]'>Add to shopping cart </button><input type='number'name='quantity' value='1'></form></div>
+              <div class='destination_subtitle'><form action='deleteproduct.php' method='post'><button type='submit' name='submit' value='$row[id]'>delete </button><input type='number'name='quantity' value='1'></form></div>
+              <div class='destination_subtitle'><form action='updateproduct.php' method='post'><button type='submit' name='submit' value='$row[id]'>update </button><input type='number'name='quantity' value='1'></form></div>
+
             </div>
           </div><hr><hr><hr>";
 }
