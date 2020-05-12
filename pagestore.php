@@ -69,7 +69,7 @@
 		<div class="header_social d-flex flex-row align-items-center justify-content-start">
 			<ul class="d-flex flex-row align-items-start justify-content-start">
 				<li><a href="favstore.php">Favourite store</a></li>
-				<li><a href="#">Shopping cart</a></li>
+				<li><a href="shoppingcart.php">Shopping cart</a></li>
 			</ul>
 		</div>
 	</header>

@@ -20,7 +20,12 @@
     $row2=mysqli_fetch_assoc($ret2);
 
 if($row2){
-require("index.php");
+  session_start();
+
+
+             $_SESSION['userid']= $id['id'];
+require("owner.php");
+
 }
 else{
   session_start();

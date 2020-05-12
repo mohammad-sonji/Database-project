@@ -21,4 +21,8 @@ while($row2=MySQLI_fetch_array($result2)){
 
 $qqq = "DELETE from shoppingcart where customer_id='$id'";
   $rrr= mysqli_query($db, $qqq) or die ("Couldnt execute query     .");
+
+
+header("Location: history.php");
+
  ?>
