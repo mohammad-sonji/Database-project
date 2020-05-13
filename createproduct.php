@@ -9,7 +9,7 @@
 <p><br></p>
 <input type="text" name="productdescription"placeholder="enter product desciption" required/>
 <p><br></p>
-  <input type="submit" id="submit" name="submit" value="create store">
+  <input type="submit" id="submit" name="submit" value="create product">
 
 
 </form>

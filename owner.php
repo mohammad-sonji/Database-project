@@ -4,6 +4,12 @@
 <body>
 <div>
   <li><a href="createstore.php">create store</a></li>
+  <li><a href="searchbymonth.php">search by month</a></li>
+  <li><a href="sbpot.php">search by period of time</a></li>
+  <li><a href="sby.php">search by year</a></li>
+  <li><a href="sbpoy.php">search by period of years</a></li>
+  <li><a href="sbp.php">search by product</a></li>
+
 </div>
 <div>
   <form action="showstoreowner.php" method="get"/>
