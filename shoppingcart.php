@@ -96,7 +96,7 @@
 							<div class="row">
 								<div class="col">
 									<div class="home_slider_content">
-										<div class="home_title"><h2>Show store</h2></div>
+										<div class="home_title"><h2>Shopping cart</h2></div>
 									</div>
 								</div>
 							</div>
